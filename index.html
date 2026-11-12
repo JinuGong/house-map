@@ -487,7 +487,7 @@ function openPlace(p){
       ${isApt?`<div class="two"><label class="fld"><span>가격 (매매·전세)</span><input id="pPrice" value="${esc(s.price||"")}" placeholder="예: 전세 4.2억"></label>
         <label class="fld"><span>평형·층</span><input id="pUnit" value="${esc(s.unit||"")}" placeholder="예: 24평 7층"></label></div>
         <label class="fld"><span>방문일</span><input type="date" id="pVisit" value="${esc(s.visit||"")}"></label>`:""}
-      <label class="fld"><span>메모</span><textarea id="pMemo" placeholder="${isApt?"채광, 언덕, 관리 상태, 주차, 단지 분위기…":"선생님, 대기, 분위기…"}">${esc(s.memo||"")}</textarea></label>
+      <label class="fld"><span>메모</span><textarea id="pNote" placeholder="${isApt?"채광, 언덕, 관리 상태, 주차, 단지 분위기…":"선생님, 대기, 분위기…"}">${esc(s.memo||"")}</textarea></label>
       <div class="btns ${saved?"two":""}" style="padding-bottom:14px">${saved?`<button class="btn danger" data-a="unsave">기록 삭제</button>`:""}<button class="btn primary" data-a="savePlace">${saved?"저장":"기록하기"}</button></div>
     </div>`, sh=>{
       sh.querySelector("#stSeg").onclick = e=>{ const b=e.target.closest("button"); if(!b) return; const on = b.getAttribute("aria-pressed")==="true";
@@ -534,7 +534,7 @@ $("#sheet").addEventListener("click", e=>{
       price: sh.querySelector("#pPrice") ? sh.querySelector("#pPrice").value.trim() : "",
       unit: sh.querySelector("#pUnit") ? sh.querySelector("#pUnit").value.trim() : "",
       visit: sh.querySelector("#pVisit") ? sh.querySelector("#pVisit").value : "",
-      memo: sh.querySelector("#pMemo").value, createdAt: (data.places[s.id]||{}).createdAt || new Date().toISOString(), updatedAt: new Date().toISOString()};
+      memo: sh.querySelector("#pNote").value, createdAt: (data.places[s.id]||{}).createdAt || new Date().toISOString(), updatedAt: new Date().toISOString()};
     data.places[s.id] = rec; save(); if(ready) drawSaved(); toast("기록했습니다"); back();
   }
   else if(a==="unsave"){
